@@ -1,4 +1,4 @@
-namespace BakePopup.Domain.Exceptions
+namespace BakePopup.Domain.Products.Exceptions
 {
     public class InvalidPriceException : Exception
     {

@@ -1,6 +1,7 @@
+using BakePopup.Domain.Products.Exceptions;
 using BakePopup.Domain.Shared;
-// create a products folder that holds entities, exceptions, and value objects
-namespace BakePopup.Domain.Entities
+
+namespace BakePopup.Domain.Products.Entities
 {
     public class Product : AggregateRoot<Guid>
     {
@@ -16,11 +17,12 @@ namespace BakePopup.Domain.Entities
         public string Description { get; private set; } = string.Empty;
         public decimal Price { get; private set; }
         public int Quantity { get; private set; } = 0;
+        public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
         public static Product Create(string name, string description, decimal price, int quantity = 0)
         {
             if (price < 0)
             {
-                throw new Exceptions.InvalidPriceException(price);
+                throw new InvalidPriceException(price);
             }
             // what would the right way to validate that name is unique?
             // either handle in the application layer or use a domain service

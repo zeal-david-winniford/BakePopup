@@ -1,8 +1,8 @@
 namespace BakePopup.API.Controllers
 {
     using BakePopup.API.ViewModels;
-    using BakePopup.Domain.Entities;
-    using BakePopup.Domain.Exceptions;
+    using BakePopup.Domain.Products.Entities;
+    using BakePopup.Domain.Products.Exceptions;
     using Microsoft.AspNetCore.Mvc;
 
     [ApiController]
