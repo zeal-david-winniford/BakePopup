@@ -8,9 +8,6 @@
   <ItemGroup>
   <ProjectReference Include="..\BakePopup.Domain\BakePopup.Domain.csproj" />
 </ItemGroup>
-<ItemGroup>
-  <ProjectReference Include="..\BakePopup.API\BakePopup.API.csproj" />
-</ItemGroup>
 
 
 </Project>
