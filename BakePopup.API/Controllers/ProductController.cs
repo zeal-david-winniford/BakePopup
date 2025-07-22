@@ -1,21 +1,28 @@
+using BakePopup.API.ViewModels;
+using BakePopup.Application.Services;
+using BakePopup.Domain.Products.Exceptions;
+using Microsoft.AspNetCore.Mvc;
+
 namespace BakePopup.API.Controllers
 {
-    using BakePopup.API.ViewModels;
-    using BakePopup.Domain.Products.Entities;
-    using BakePopup.Domain.Products.Exceptions;
-    using Microsoft.AspNetCore.Mvc;
 
     [ApiController]
     [Route("api/[controller]")]
     public class ProductController : ControllerBase
     {
-        [HttpPost]
+        public IProductService ProductService { get; }
+        public ProductController(IProductService productService)
+        {
+            ProductService = productService;
+        }
+
+        [HttpPost()]
         public IActionResult CreateProduct([FromBody] CreateProductRequest request)
         {
             try
             {
-                var product = Product.Create(request.Name, request.Description, request.Price, request.Quantity);
-                return Ok(product);
+                var productDto = ProductService.CreateProduct(request);
+                return Ok(productDto);
             }
             catch (InvalidPriceException ex)
             {
@@ -23,6 +30,4 @@ namespace BakePopup.API.Controllers
             }
         }
     }
-
-    
 }

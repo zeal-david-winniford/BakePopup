@@ -13,4 +13,9 @@
   <ProjectReference Include="..\BakePopup.Domain\BakePopup.Domain.csproj" />
 </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BakePopup.Application\BakePopup.Application.csproj" />
+  </ItemGroup>
+
+
 </Project>
