@@ -11,6 +11,6 @@ namespace BakePopup.Data.Entities
         public decimal Price { get; set; }
         public string Description { get; set; } = string.Empty;
         public uint Quantity { get; set; }
-        public DateTime CreatedAt { get; private set; }
+        public DateTime CreatedAt { get; set; }
     }
 }

@@ -5,5 +5,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+  <!-- make internals visible to data project -->
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <_Parameter1>BakePopup.Data</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
 
 </Project>

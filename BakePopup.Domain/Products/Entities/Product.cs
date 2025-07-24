@@ -5,12 +5,13 @@ namespace BakePopup.Domain.Products.Entities
 {
     public class Product : AggregateRoot<Guid>
     {
-        internal Product(Guid id, string name, string description, decimal price, int quantity) : base(id)
+        internal Product(Guid id, string name, string description, decimal price, int quantity, DateTime createdAt) : base(id)
         {
             Name = name;
             Description = description;
             Price = price;
             Quantity = quantity;
+            CreatedAt = createdAt;
         }
 
         public string Name { get; private set; }
@@ -27,7 +28,7 @@ namespace BakePopup.Domain.Products.Entities
             // what would the right way to validate that name is unique?
             // either handle in the application layer or use a domain service
             // in domain layer create a service that checks for uniqueness
-            return new Product(Guid.NewGuid(), name, description, price, quantity);
+            return new Product(Guid.NewGuid(), name, description, price, quantity, DateTime.UtcNow);
         }
 
     }
