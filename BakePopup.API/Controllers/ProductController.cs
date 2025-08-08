@@ -1,7 +1,9 @@
 using BakePopup.API.ViewModels;
+using BakePopup.Application.Queries;
 using BakePopup.Application.Services;
 using BakePopup.Domain.Products.Entities;
 using BakePopup.Domain.Products.Exceptions;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BakePopup.API.Controllers
@@ -12,9 +14,12 @@ namespace BakePopup.API.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IProductService _productService;
-        public ProductController(IProductService productService)
+        private readonly IMediator _mediator;
+
+        public ProductController(IProductService productService, IMediator mediator)
         {
             _productService = productService;
+            _mediator = mediator;
         }
 
         [HttpPost()]
@@ -69,6 +74,12 @@ namespace BakePopup.API.Controllers
                 Quantity = product.Quantity
             };
             return Ok(productViewModel);
+        }
+        // test endpoint for mediatR
+        [HttpGet("test")]
+        public async Task<IActionResult> TestEndpoint()
+        {
+            return Ok(await _mediator.Send(new TestQuery()));
         }
     }
 }

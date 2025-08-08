@@ -1,4 +1,5 @@
 using BakePopup.Application.Interfaces;
+using BakePopup.Application.Queries;
 using BakePopup.Application.Services;
 using BakePopup.Data;
 using BakePopup.Data.Repositories;
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<BakePopupContext>();
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(QueryBase).Assembly));
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
