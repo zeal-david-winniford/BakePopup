@@ -1,18 +1,24 @@
+using BakePopup.Application.Behaviors;
 using BakePopup.Application.Interfaces;
 using BakePopup.Application.Queries;
+using BakePopup.Application.Queries.Products;
 using BakePopup.Application.Services;
 using BakePopup.Data;
+using BakePopup.Data.Queries.Products;
 using BakePopup.Data.Repositories;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<BakePopupContext>();
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(QueryBase).Assembly));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(QueryBase).Assembly))
+    .AddTransient(typeof(IPipelineBehavior<,>), typeof(UnitOfWorkBehavior<,>));
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IGetProductsDataQuery, GetProductsDataQuery>();
 
 
 

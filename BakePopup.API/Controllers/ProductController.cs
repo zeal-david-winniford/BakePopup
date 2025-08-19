@@ -46,7 +46,7 @@ namespace BakePopup.API.Controllers
         [HttpGet()]
         public async Task<IActionResult> GetAllProducts()
         {
-            var products = await _productService.GetAllProducts();
+            var products = await _mediator.Send(new GetProductsQuery());
             var productViewModels = products.Select(p => new ProductViewModel
             {
                 Id = p.Id,
